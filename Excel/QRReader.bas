@@ -6,8 +6,8 @@ Sub Save1QR()
 End Sub
 
 Sub processHardCodedData()
-    saveData ("s=fudd;e=2022carv;l=qm;m=2;r=r2;t=2451;as=[35];asg=[3,4];acc=1;acs=1;am=1;ad=e;tct=[8.3,7.3,6.7,7.1,5.5,5.8,5.4];tsg=[5,6,7,8,9,1,2];tfc=0;wf=0;wd=0;who=;lnk=1;fpu=b;dt=9.9;fs=e;dn=2;ds=v;ls=5;dr=x;sd=1;sr=5;die=0;tip=0;dc=0;all=1;co=PWNAGE")
-    
+    saveData ("s=fudd;e=2023njrob;l=qm;m=2;r=r2;t=2451;as=[35];asg=[3,4];acc=1;acs=1;am=1;ad=e;tct=[8.3,7.3,6.7,7.1,5.5,5.8,5.4];tsg=[5,6,7,8,9,1,2];tfc=0;wf=0;wd=0;who=;lnk=1;fpu=b;dt=9.9;fs=e;dn=2;ds=v;ls=5;dr=x;sd=1;sr=5;die=0;tip=0;dc=0;all=1;co=PWNAGE")
+
     ActiveWorkbook.Save
 End Sub
 
@@ -31,7 +31,7 @@ Public Function getInput()
 End Function
 
 Sub test()
-    saveData ("s=fudd;e=2022carv;l=qm;m=2;r=r2;t=2451;as=[35];asg=[3,4];acc=1;acs=1;am=1;ad=e;tct=[8.3,7.3,6.7,7.1,5.5,5.8,5.4];tsg=[5,6,7,8,9,1,2];tfc=0;wf=0;wd=0;who=;lnk=1;fpu=b;dt=9.9;fs=e;dn=2;ds=v;ls=5;dr=x;sd=1;sr=5;die=0;tip=0;dc=0;all=1;co=PWNAGE")
+    saveData ("s=fudd;e=2023njrob;l=qm;m=2;r=r2;t=2451;as=[35];asg=[3,4];acc=1;acs=1;am=1;ad=e;tct=[8.3,7.3,6.7,7.1,5.5,5.8,5.4];tsg=[5,6,7,8,9,1,2];tfc=0;wf=0;wd=0;who=;lnk=1;fpu=b;dt=9.9;fs=e;dn=2;ds=v;ls=5;dr=x;sd=1;sr=5;die=0;tip=0;dc=0;all=1;co=PWNAGE")
 End Sub
 
 Sub dbm(inp As String)
@@ -75,7 +75,7 @@ Sub saveData(inp As String)
     mapper.add "acs", "autoCrossedChargingStation"
     mapper.add "am", "autoMobility"
     mapper.add "ad", "autoDocked"
-    
+
     ' Teleop
     mapper.add "tct", "cycleTimes"
     mapper.add "tsg", "scoredGrid"
@@ -88,7 +88,7 @@ Sub saveData(inp As String)
     mapper.add "dt", "dockingTime"
     mapper.add "fs", "finalState"
     mapper.add "dn", "numOfRobotsDocked"
-    
+
     'Endgame
     mapper.add "ds", "driverSkill"
     mapper.add "ls", "linksScored"
@@ -110,7 +110,7 @@ Sub saveData(inp As String)
     End If
 
     'MsgBox (inp)
-    
+
     fields = Split(inp, ";")
     If ArrayLen(fields) > 0 Then
         Dim i As Integer
@@ -129,7 +129,7 @@ Sub saveData(inp As String)
         Next
 
         tableexists = False
-        
+
         Dim tbl As ListObject
         Dim sht As Worksheet
 
@@ -158,9 +158,9 @@ Sub saveData(inp As String)
         End If
 
         Dim newrow As ListRow
-    
+
         Set newrow = table.ListRows.add
-        
+
         For Each str In data.Keys
             ' Specific data manipulation
             If str = "autoStartingLocation" Then
@@ -200,7 +200,7 @@ Sub savePitData(inp As String)
     mapper.add "fcu", "floorPickUpCubes"
     mapper.add "ccs", "crossCS"
     mapper.add "aut", "autos"
-    
+
     If inp = "Camera" Then
         Exit Sub
     End If
@@ -210,7 +210,7 @@ Sub savePitData(inp As String)
     End If
 
     ' MsgBox (inp)
-    
+
     fields = Split(inp, ";")
     If ArrayLen(fields) > 0 Then
         Dim i As Integer
@@ -229,7 +229,7 @@ Sub savePitData(inp As String)
         Next
 
         tableexists = False
-        
+
         Dim tbl As ListObject
         Dim sht As Worksheet
 
@@ -243,7 +243,7 @@ Sub savePitData(inp As String)
                 End If
             Next tbl
         Next sht
-        
+
         If tableexists Then
             ' Set table = ws.ListObjects(tableName)
         Else
@@ -258,9 +258,9 @@ Sub savePitData(inp As String)
         End If
 
         Dim newrow As ListRow
-        
+
         Set newrow = table.ListRows.add
-                
+
         For Each str In data.Keys
             newrow.Range(table.ListColumns(str).Index) = data(str)
         Next
@@ -279,29 +279,29 @@ End Function
 Private Function countGrid(ByRef myCell As Range, ByVal countType As Integer) As Integer
     Dim myArrStr As String
     Dim myArr() As String
-    
+
     Dim highNumArr() As String
     highNumArr = Split("1,2,3,4,5,6,7,8,9", ",")
 
     Dim medNumArr() As String
     medNumArr = Split("10,11,12,13,14,15,16,17,18", ",")
-    
+
     Dim lowNumArr() As String
     lowNumArr = Split("19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36", ",")
-    
+
     Dim coneNumArr() As String
     coneNumArr = Split("1,3,4,6,7,9,10,12,13,15,16,18,19,20,21,22,23,24,25,26,27", ",")
-    
+
     Dim cubeNumArr() As String
     cubeNumArr = Split("2,5,8,11,14,17,28,29,30,31,32,33,34,35,36", ",")
-    
+
     Dim totalGamePieces As Integer
     Dim highGamePieces As Integer
     Dim medGamePieces As Integer
     Dim lowGamePieces As Integer
     Dim coneCount As Integer
     Dim cubeCount As Integer
-    
+
     totalGamePieces = 0
     highGamePieces = 0
     medGamePieces = 0
@@ -314,7 +314,7 @@ Private Function countGrid(ByRef myCell As Range, ByVal countType As Integer) As
         countGrid = -1
         Exit Function
     End If
-        
+
     If Mid(myCell, 1, 1) = "[" And Mid(myCell, Len(myCell), 1) = "]" Then
         myArrStr = Mid(myCell, 2, Len(myCell) - 2)
     Else
@@ -324,10 +324,10 @@ Private Function countGrid(ByRef myCell As Range, ByVal countType As Integer) As
     End If
 
     myArr = Split(myArrStr, ",")
-    
+
     Dim item As Variant
     For Each item In myArr
-        
+
         totalGamePieces = totalGamePieces + 1
         If Not IsError(Application.match(item, highNumArr, 0)) Then
             highGamePieces = highGamePieces + 1
@@ -344,9 +344,9 @@ Private Function countGrid(ByRef myCell As Range, ByVal countType As Integer) As
         If Not IsError(Application.match(item, cubeNumArr, 0)) Then
             cubeCount = cubeCount + 1
         End If
-        
+
     Next item
-    
+
     If countType = 1 Then
         ' Total game pieces
         countGrid = totalGamePieces
@@ -400,13 +400,13 @@ End Function
 Private Function getAvgCycleTime(ByRef myCell As Range) As Double
     Dim myArrStr As String
     Dim myArr() As String
-    
+
     If (myCell.Cells.count > 1) Then
         MsgBox ("Pass in only 1 Cell")
         getAvgCycleTime = -1
         Exit Function
     End If
-        
+
     If Mid(myCell, 1, 1) = "[" And Mid(myCell, Len(myCell), 1) = "]" Then
         myArrStr = Mid(myCell, 2, Len(myCell) - 2)
     Else
@@ -416,16 +416,16 @@ Private Function getAvgCycleTime(ByRef myCell As Range) As Double
     End If
 
     myArr = Split(myArrStr, ",")
-    
+
     Dim total As Double
     Dim count As Integer
-    
+
     total = 0
     count = 0
-    
+
     Dim item As Variant
     For Each item In myArr
-        
+
         Dim numStr As String
         Dim num As Double
 
@@ -433,11 +433,11 @@ Private Function getAvgCycleTime(ByRef myCell As Range) As Double
         total = total + num
         count = count + 1
     Next item
-    
+
     If count = 0 Then
         getAvgCycleTime = 0
     Else
         getAvgCycleTime = total / count
     End If
-    
+
 End Function
